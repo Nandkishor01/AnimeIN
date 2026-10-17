@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 850" width="100%" height="100%">
+  <defs>
+    <pattern id="dot-cover" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="6" cy="6" r="2.2" fill="#FF3B6B" opacity="0.35"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="850" fill="#0B0A0F"/>
+  <rect width="600" height="850" fill="url(#dot-cover)"/>
+  
+  <!-- Masthead -->
+  <rect x="30" y="30" width="540" height="120" fill="#FF3B6B"/>
+  <text x="50" y="90" fill="#0B0A0F" font-family="sans-serif" font-weight="900" font-size="44" letter-spacing="2">OTAKU BHASKAR</text>
+  <text x="52" y="125" fill="#F2EFE8" font-family="sans-serif" font-weight="700" font-size="16" letter-spacing="3">ISSUE 01 · VOL. 1 · AUTUMN 2026</text>
+
+  <!-- Big Central Artwork Motif -->
+  <rect x="50" y="180" width="500" height="420" fill="#131219" stroke="#272433" stroke-width="4"/>
+  <circle cx="300" cy="380" r="150" fill="#FFC93C" opacity="0.85"/>
+  <path d="M180,480 L300,240 L420,480 Z" fill="#F2EFE8"/>
+  <circle cx="300" cy="300" r="28" fill="#FF3B6B"/>
+
+  <!-- Headline Band -->
+  <rect x="50" y="630" width="500" height="150" fill="#0B0A0F" stroke="#FF3B6B" stroke-width="2"/>
+  <text x="70" y="675" fill="#F2EFE8" font-family="sans-serif" font-weight="900" font-size="28">MONSOON &amp; MANGA</text>
+  <text x="70" y="710" fill="#FFC93C" font-family="sans-serif" font-weight="600" font-size="16">Temporal Grief in Frieren · The Hindi Voice Guild</text>
+  <text x="70" y="740" fill="#6E6A78" font-family="sans-serif" font-weight="500" font-size="14">Delicious in Dungeon Anatomy · 64 Risograph Pages</text>
+</svg>
