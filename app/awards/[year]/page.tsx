@@ -30,9 +30,7 @@ export default async function AwardVotingPage({ params }: PageProps) {
     return (
       <div className="w-full bg-ink text-paper py-20">
         <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
-          <div className="inline-block p-4 bg-ink-surface border-2 border-riso-yellow">
-            <Trophy className="w-12 h-12 text-riso-yellow mx-auto" />
-          </div>
+          <Trophy className="w-10 h-10 text-riso-yellow mx-auto" />
           <h1 className="font-display font-black text-4xl sm:text-5xl text-paper">
             Voting Closed for {season.name}
           </h1>
@@ -42,14 +40,14 @@ export default async function AwardVotingPage({ params }: PageProps) {
           <div className="pt-4 flex justify-center gap-4">
             <Link
               href={`/awards/${year}/results`}
-              className="px-6 py-3 bg-riso-pink text-paper font-bold text-sm border-2 border-riso-pink hover:bg-paper hover:text-ink transition-colors inline-flex items-center gap-2"
+              className="px-6 py-3 bg-riso-pink text-paper font-bold text-sm hover:bg-paper hover:text-ink transition-colors inline-flex items-center gap-2"
             >
               <Award className="w-4 h-4" />
               <span>View Certified Results</span>
             </Link>
             <Link
               href="/awards"
-              className="px-6 py-3 bg-ink-surface text-paper font-bold text-sm border-2 border-ink-border hover:bg-ink-card transition-colors inline-flex items-center gap-2"
+              className="px-6 py-3 text-paper font-bold text-sm hover:text-riso-yellow transition-colors inline-flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to Awards Hub</span>
@@ -63,8 +61,8 @@ export default async function AwardVotingPage({ params }: PageProps) {
   const categories = await getCategoriesWithNominees(season.id)
 
   return (
-    <div className="w-full bg-ink text-paper py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div className="w-full bg-ink text-paper py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         <div className="flex items-center gap-2 text-xs font-bold text-ash">
           <Link href="/awards" className="hover:text-riso-pink transition-colors">
             Awards Hub

@@ -14,7 +14,7 @@ export function Header() {
   const navLinks = [
     { label: 'Awards', href: '/awards' },
     { label: 'Magazine', href: '/magazine' },
-    { label: 'About', href: '/#about' },
+    { label: 'About', href: '/about' },
   ]
 
   const isActive = (href: string) => {
@@ -23,18 +23,18 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-ink border-b-2 border-ink-border transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-ink/95 backdrop-blur-sm border-b border-ink-border/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Wordmark */}
         <Link
           href="/"
-          className="flex items-center gap-2 group focus:outline-none"
+          className="flex items-center gap-2 group"
           aria-label="AnimeIndian Home"
         >
-          <span className="font-display font-black text-2xl sm:text-3xl tracking-tight text-paper group-hover:text-riso-pink transition-colors">
+          <span className="font-display font-black text-xl sm:text-2xl tracking-tight text-paper group-hover:text-riso-pink transition-colors">
             ANIME<span className="text-riso-pink">INDIAN</span>
           </span>
-          <span className="hidden sm:inline-block px-1.5 py-0.5 text-xs font-bold bg-riso-yellow text-ink">
+          <span className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-bold bg-riso-yellow text-ink tracking-wider">
             IN
           </span>
         </Link>
@@ -47,13 +47,16 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-base font-semibold transition-colors ${
+                className={`text-sm font-semibold transition-colors relative py-1 ${
                   active
-                    ? 'text-riso-pink border-b-2 border-riso-pink pb-1'
-                    : 'text-paper hover:text-riso-yellow'
+                    ? 'text-riso-pink'
+                    : 'text-ash-light hover:text-paper'
                 }`}
               >
                 {link.label}
+                {active && (
+                  <span className="absolute -bottom-px left-0 right-0 h-0.5 bg-riso-pink" />
+                )}
               </Link>
             )
           })}
@@ -63,11 +66,11 @@ export function Header() {
         <div className="hidden md:flex items-center gap-4">
           {user ? (
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-ink-surface border-2 border-ink-border text-sm font-medium text-paper">
+              <div className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-paper">
                 <User className="w-4 h-4 text-riso-yellow" />
                 <span className="max-w-[120px] truncate">{user.name}</span>
                 {user.is_mock && (
-                  <span className="text-xs bg-ink-card px-1 py-0.5 text-ash-light">
+                  <span className="text-[10px] bg-ink-card px-1 py-0.5 text-ash-light tracking-wider">
                     Demo
                   </span>
                 )}
@@ -107,14 +110,14 @@ export function Header() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-ink-surface border-b-2 border-ink-border px-4 pt-4 pb-6 space-y-4">
+        <div className="md:hidden bg-ink-surface px-4 pt-4 pb-6 space-y-4 border-b border-ink-border/60">
           <nav className="flex flex-col space-y-3" aria-label="Mobile Navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-lg font-bold py-2 ${
+                className={`text-base font-bold py-1.5 ${
                   isActive(link.href) ? 'text-riso-pink' : 'text-paper hover:text-riso-yellow'
                 }`}
               >
@@ -123,7 +126,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="pt-4 border-t-2 border-ink-border">
+          <div className="pt-3 border-t border-ink-border/60">
             {user ? (
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm text-paper font-medium">
@@ -135,7 +138,7 @@ export function Header() {
                     logout()
                     setMobileMenuOpen(false)
                   }}
-                  className="px-3 py-1 bg-ink text-xs text-riso-pink font-semibold border-2 border-ink-border"
+                  className="px-3 py-1 bg-ink text-xs text-riso-pink font-semibold"
                 >
                   Sign Out
                 </button>

@@ -38,31 +38,29 @@ export default async function AwardsResultsPage({ params }: ResultsPageProps) {
     return (
       <div className="w-full bg-ink text-paper py-20">
         <div className="max-w-3xl mx-auto px-4 text-center space-y-6">
-          <div className="inline-block p-4 bg-ink-surface border-2 border-riso-pink">
-            <Clock className="w-12 h-12 text-riso-pink mx-auto" />
-          </div>
-          <span className="inline-block text-xs font-bold px-3 py-1 bg-ink-surface text-riso-yellow border-2 border-ink-border uppercase">
+          <Clock className="w-10 h-10 text-riso-pink mx-auto" />
+          <span className="inline-block text-xs font-bold px-3 py-1 bg-ink-surface text-riso-yellow tracking-widest">
             RESULTS SEALED
           </span>
           <h1 className="font-display font-black text-4xl sm:text-6xl text-paper">
             {season.name} Reveal
           </h1>
           <p className="text-ash-light text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
-            The ballots are currently locked. Certified election results and community category winners will be revealed publicly on <strong>{revealDate}</strong>.
+            The ballots are currently locked. Certified election results and community category winners will be revealed publicly on <strong className="text-paper">{revealDate}</strong>.
           </p>
           <div className="pt-4 flex justify-center gap-4">
             <Link
               href={`/awards/${season.year}`}
-              className="px-6 py-3 bg-riso-pink text-paper font-bold text-sm border-2 border-riso-pink hover:bg-paper hover:text-ink transition-colors"
+              className="px-6 py-3 bg-riso-pink text-paper font-bold text-sm hover:bg-paper hover:text-ink transition-colors"
             >
-              <span>Go to Active Voting Booth</span>
+              Go to Active Voting Booth
             </Link>
             <Link
               href="/awards"
-              className="px-6 py-3 bg-ink-surface text-paper font-bold text-sm border-2 border-ink-border hover:bg-ink-card transition-colors inline-flex items-center gap-2"
+              className="px-6 py-3 text-paper font-bold text-sm hover:text-riso-yellow transition-colors inline-flex items-center gap-2"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Awards Hub</span>
+              Awards Hub
             </Link>
           </div>
         </div>
@@ -72,34 +70,34 @@ export default async function AwardsResultsPage({ params }: ResultsPageProps) {
 
   // Published Results Event State
   return (
-    <div className="w-full bg-ink text-paper py-16">
+    <div className="w-full bg-ink text-paper py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        {/* Results Banner Header */}
-        <div className="bg-ink-surface border-4 border-riso-yellow p-8 sm:p-12 relative overflow-hidden">
-          <div className="absolute inset-0 screentone-yellow opacity-25 pointer-events-none" />
-          <div className="relative z-10 max-w-3xl space-y-4">
+        {/* Results Banner Header — editorial, no heavy box */}
+        <section className="relative overflow-hidden py-8">
+          <div className="absolute inset-0 screentone-yellow opacity-15 pointer-events-none" />
+          <div className="relative max-w-3xl space-y-4">
             <div className="flex items-center gap-3">
-              <span className="px-3 py-1 bg-riso-yellow text-ink text-xs font-black">
-                CERTIFIED ELECTION RECORDS
+              <span className="text-xs font-bold bg-riso-yellow text-ink px-2.5 py-1 tracking-widest">
+                CERTIFIED RESULTS
               </span>
-              <span className="text-xs font-bold text-riso-pink flex items-center gap-1">
+              <span className="flex items-center gap-1 text-xs font-bold text-riso-pink">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 Verified Community Results
               </span>
             </div>
 
-            <h1 className="font-display font-black text-4xl sm:text-6xl text-paper tracking-tight leading-tight">
-              {season.name.toUpperCase()} WINNERS
+            <h1 className="font-display font-black text-4xl sm:text-6xl text-paper tracking-tight leading-[1.05]">
+              {season.name.toUpperCase()}<br />Winners
             </h1>
 
             <p className="text-ash-light text-base leading-relaxed">
               Official tally of votes cast by verified Indian anime community members. Results computed and certified via database audit.
             </p>
           </div>
-        </div>
+        </section>
 
         {/* Categories Results Breakdown */}
-        <div className="space-y-16">
+        <div className="space-y-20">
           {categories.map((category) => {
             const winner = category.nominees[0]
             const runnersUp = category.nominees.slice(1)
@@ -109,92 +107,88 @@ export default async function AwardsResultsPage({ params }: ResultsPageProps) {
             )
 
             return (
-              <section
-                key={category.category_id}
-                className="bg-ink-surface border-2 border-ink-border p-6 sm:p-10 space-y-8"
-              >
+              <section key={category.category_id} className="space-y-8">
                 {/* Category Header */}
-                <div className="border-b-2 border-ink-border pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div className="border-b border-ink-border pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
                   <div>
-                    <span className="text-xs font-bold text-riso-yellow uppercase">
+                    <span className="text-xs font-bold text-riso-yellow tracking-widest">
                       CATEGORY {category.category_order}
                     </span>
-                    <h2 className="font-display font-black text-2xl sm:text-4xl text-paper">
+                    <h2 className="font-display font-black text-2xl sm:text-4xl text-paper mt-1">
                       {category.category_name}
                     </h2>
                   </div>
                   <div className="text-xs font-bold text-ash">
-                    Total Ballots Audited: <strong>{totalCategoryVotes.toLocaleString()}</strong>
+                    {totalCategoryVotes.toLocaleString()} ballots audited
                   </div>
                 </div>
 
-                {/* 1st Place Winner Highlight Card */}
+                {/* 1st Place Winner — large artwork */}
                 {winner && (
-                  <div className="bg-ink border-4 border-riso-pink p-6 sm:p-8 flex flex-col lg:flex-row items-center gap-8 relative overflow-hidden">
-                    <div className="relative w-full lg:w-[320px] h-[220px] bg-ink-card border-2 border-ink-border overflow-hidden shrink-0">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div className="relative aspect-[4/3] bg-ink-card overflow-hidden">
                       <Image
                         src={winner.nominee_image}
                         alt={winner.nominee_title}
                         fill
                         className="object-cover"
+                        priority
                       />
-                      <div className="absolute top-3 left-3 bg-riso-pink text-paper text-xs font-black px-2.5 py-1 flex items-center gap-1.5 border-2 border-ink">
+                      <div className="absolute top-4 left-4 bg-riso-pink text-paper text-xs font-black px-3 py-1.5 flex items-center gap-1.5">
                         <Trophy className="w-3.5 h-3.5" />
-                        <span>WINNER · 1ST PLACE</span>
+                        WINNER
                       </div>
                     </div>
 
-                    <div className="flex-1 space-y-3 text-center lg:text-left">
-                      <span className="text-xs font-bold text-riso-yellow">
+                    <div className="space-y-4">
+                      <span className="text-sm font-bold text-riso-yellow">
                         {winner.nominee_subtitle}
                       </span>
-                      <h3 className="font-display font-black text-2xl sm:text-4xl text-paper">
+                      <h3 className="font-display font-black text-2xl sm:text-4xl text-paper leading-tight">
                         {winner.nominee_title}
                       </h3>
-                      <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-sm font-bold text-ash-light">
-                        <span className="px-3 py-1 bg-ink-surface border-2 border-ink-border text-paper">
-                          {winner.vote_count.toLocaleString()} Certified Votes
+                      <div className="flex flex-wrap items-center gap-4 text-sm font-bold pt-2">
+                        <span className="text-paper">
+                          {winner.vote_count.toLocaleString()} certified votes
                         </span>
                         <span className="text-riso-pink">
                           {totalCategoryVotes > 0
                             ? Math.round((winner.vote_count / totalCategoryVotes) * 100)
-                            : 0}
-                          % Share of Vote
+                            : 0}% share
                         </span>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* Runners Up List */}
+                {/* Runners Up List — editorial, no heavy boxes */}
                 {runnersUp.length > 0 && (
                   <div className="space-y-3 pt-2">
-                    <h4 className="text-xs font-bold text-ash uppercase">
+                    <h4 className="text-xs font-bold text-ash tracking-widest">
                       RUNNERS UP
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="space-y-2">
                       {runnersUp.map((runner) => (
                         <div
                           key={runner.nominee_id}
-                          className="bg-ink border-2 border-ink-border p-4 flex items-center gap-4"
+                          className="flex items-center gap-4 py-3 border-b border-ink-border/40"
                         >
-                          <div className="w-8 h-8 bg-ink-surface border-2 border-ink-border flex items-center justify-center font-display font-black text-sm text-ash shrink-0">
+                          <span className="font-display font-black text-lg text-ink-border w-8 shrink-0">
                             #{runner.rank}
-                          </div>
+                          </span>
                           <div className="flex-1 min-w-0">
-                            <h5 className="font-display font-black text-sm text-paper truncate">
+                            <h5 className="font-display font-black text-base text-paper">
                               {runner.nominee_title}
                             </h5>
-                            <div className="flex items-center gap-2 text-xs text-ash">
-                              <span>{runner.vote_count.toLocaleString()} votes</span>
-                              <span>·</span>
-                              <span className="text-riso-yellow">
-                                {totalCategoryVotes > 0
-                                  ? Math.round((runner.vote_count / totalCategoryVotes) * 100)
-                                  : 0}
-                                %
-                              </span>
-                            </div>
+                            <span className="text-xs text-ash">{runner.nominee_subtitle}</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-sm shrink-0">
+                            <span className="text-paper font-bold">{runner.vote_count.toLocaleString()}</span>
+                            <span className="text-riso-yellow text-xs">
+                              {totalCategoryVotes > 0
+                                ? Math.round((runner.vote_count / totalCategoryVotes) * 100)
+                                : 0}%
+                            </span>
                           </div>
                         </div>
                       ))}
@@ -204,6 +198,17 @@ export default async function AwardsResultsPage({ params }: ResultsPageProps) {
               </section>
             )
           })}
+        </div>
+
+        {/* Back link */}
+        <div className="pt-8 border-t border-ink-border">
+          <Link
+            href="/awards"
+            className="inline-flex items-center gap-2 text-sm font-bold text-ash-light hover:text-riso-yellow transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Awards Hub</span>
+          </Link>
         </div>
       </div>
     </div>

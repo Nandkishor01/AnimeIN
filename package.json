@@ -10,6 +10,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@netlify/plugin-nextjs": "^5.16.2",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/typography": "^0.5.16",

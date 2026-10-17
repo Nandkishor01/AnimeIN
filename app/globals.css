@@ -12,6 +12,7 @@
   --color-riso-pink: #FF3B6B;
   --color-riso-yellow: #FFC93C;
   --color-ash: #6E6A78;
+  --content-width: 80rem;
 }
 
 body {
@@ -39,8 +40,8 @@ body {
 }
 
 /* 3D Perspective container for Manga Panels */
-.perspective-1000 {
-  perspective: 1000px;
+.perspective-1200 {
+  perspective: 1200px;
 }
 
 .transform-style-3d {
@@ -66,10 +67,59 @@ select:focus-visible {
   animation: marquee 35s linear infinite;
 }
 
+/* Staggered entrance animation for hero panels */
+@keyframes panelEnterBack {
+  0% { opacity: 0; transform: translate3d(60px, -30px, -60px) scale(0.9); }
+  100% { opacity: 1; transform: translate3d(30px, -10px, -60px) scale(1); }
+}
+@keyframes panelEnterMiddle {
+  0% { opacity: 0; transform: translate3d(-40px, 60px, -20px) scale(0.9); }
+  100% { opacity: 1; transform: translate3d(-20px, 40px, -20px) scale(1); }
+}
+@keyframes panelEnterFront {
+  0% { opacity: 0; transform: translate3d(0, 30px, 40px) scale(0.95); }
+  100% { opacity: 1; transform: translate3d(10px, 10px, 40px) scale(1); }
+}
+
+.animate-panel-back {
+  animation: panelEnterBack 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-panel-middle {
+  animation: panelEnterMiddle 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+.animate-panel-front {
+  animation: panelEnterFront 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+/* Fade-up entrance for editorial sections */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none !important;
   }
+  .animate-panel-back,
+  .animate-panel-middle,
+  .animate-panel-front,
+  .animate-fade-up {
+    animation: none !important;
+  }
+}
+
+/* Hide scrollbar utility for horizontal chip rows */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @media print {
